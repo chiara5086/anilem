@@ -1,12 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import "bootstrap-icons/font/bootstrap-icons.css";
-import './components.css';
-import Item from './Item';
-import { useEffect, useState } from 'react';
-
-
-
 const products = [
     {
         id: 30,
@@ -41,58 +32,8 @@ const products = [
             "https://res.cloudinary.com/bodegas-del-sur/image/upload/v1631316095/BodegasDelSur/01_1605541215.jpg"
         ],
     }
-]
+];
 
-
-function customFetch(products, error) {
-    return new Promise((resolve, reject) => {
-        if (products) {
-            setTimeout(() => {
-                resolve(products)
-            }, 1000);
-        } else {
-            reject(error)
-        }
-    })
+module.exports = {
+    products,
 }
-
-
-const ItemList = () => {
-    const [productos, setproductos] = useState({});
-    //ComponentDidMount
-    useEffect(() => {
-        setTimeout(() => {
-            customFetch(products, "Error")
-                .then(products => setproductos(products))
-                .catch((err) => console.log(err))
-        }, 1000);
-    }, []);
-    return (
-        <>
-            {
-            productos.length > 0
-            ? productos.map(producto => {
-                return(
-            
-                <Item
-                    id={producto.id}
-                    name={producto.name}
-                    cost={producto.cost}
-                    image={producto.image}
-                    description={producto.description}
-                    capacity={producto.capacity}
-                    stock={producto.stock}
-                />
-        
-            )}
-                    
-
-
-                ): <p>Cargando...</p>
-            }
-        </>
-
-
-    )
-}
-export default ItemList;
