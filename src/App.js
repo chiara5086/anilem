@@ -1,15 +1,11 @@
 import './App.css';
-import Navbar from './components/Navbar'
-import ItemListContainer from './components/ItemListContainer';
-import ItemDetailContainer from './components/ItemDetailContainer';
+import Home from './pages/Home';
 
 function App() {
   return (
 
     <div className="App">
-      <Navbar/>
-      {/*<ItemListContainer greeting="Este es el ItemListContainer!"/>*/}
-      <ItemDetailContainer/>
+      <Home/>
     </div>
   );
 }

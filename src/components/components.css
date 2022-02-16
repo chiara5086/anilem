@@ -1,8 +1,5 @@
-.barramenu {
-    padding-bottom: 5px;
-    padding-top: 5px;
-    }
 .fondomenu {
+    margin-bottom: 20px;
     background-color: #a4508b;
     background-image: linear-gradient(326deg, #a4508b 0%, #5f0a87 74%);
 }
@@ -16,4 +13,20 @@
 
 .form-control{
     margin: 5px;
+}
+.card {
+    margin: 5px;
+}
+
+.row{
+    justify-content: center;
+}
+.card.border-secondary{
+    width: 345px;
+    height: 600px;
+}
+
+.card-img-top{
+    width: 286px;
+    height: 286px;
 }

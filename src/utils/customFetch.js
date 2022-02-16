@@ -1,6 +1,5 @@
 let is_ok =true;
 
-//const {products} = require('./products.js');
 
 export const customFetch = (timeout, task) => {
     return new Promise((resolve, reject) => {
