@@ -6,24 +6,23 @@ import ItemCount from './ItemCount'
 
 const {products} = require('../utils/products')
 
-const ItemDetailContainer = (props) => {
+const ItemDetailContainer = () => {
+
     const [dato, setDato] = useState ([]);
     const {idItem} = useParams();
-   
 
-    console.log(idItem)
 
     useEffect(() => {
         customFetch(2000, products.filter(item => item.id === parseInt(idItem)))
         .then(result => setDato(result), console.log(dato))
         .catch(err => console.log(err))
-    }, []);
+    }, [idItem]);
     
     return (
         <>
         {
-        dato.id>0
-        ? dato.map (item => {
+        dato.length > 0 ? (
+            dato.map(item => {
             return (
                 <>
                     <ItemDetail item={dato}
@@ -36,8 +35,9 @@ const ItemDetailContainer = (props) => {
                     stock={item.stock}/>
                     <ItemCount/>
                 </>
-                    )}
-        ):        
+                    )
+                })
+        ):       
         <p>Cargando...</p>
         
           }
