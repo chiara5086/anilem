@@ -33,7 +33,6 @@ const ItemDetailContainer = () => {
                     description={item.description}
                     capacity={item.capacity}
                     stock={item.stock}/>
-                    <ItemCount/>
                 </>
                     )
                 })
