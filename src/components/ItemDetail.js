@@ -3,11 +3,13 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import 'bootstrap/dist/css/bootstrap.css';
 import CheckoutBtn from './CheckoutBtn';
 import ItemCount from './ItemCount';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { CartContext } from './CartContext';
 
 const ItemDetail = (item) => {
 
     const [itemCount, setItemCount] = useState(0);
+    const test = useContext(CartContext)
 
     useEffect(() => {
   }, [itemCount]);
@@ -15,6 +17,7 @@ const ItemDetail = (item) => {
     const onAdd = (cantidad) => {
       mensaje(cantidad);
       setItemCount(cantidad);
+      test.addToCart(item, cantidad);
       
     }
 
