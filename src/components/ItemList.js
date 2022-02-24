@@ -14,7 +14,7 @@ const ItemList = (props) => {
                 return(
                 <div className="col-sm-3">
                 <Item
-                    key={producto.id}
+                    key={producto.id + "header"}
                     id={producto.id}
                     name={producto.name}
                     cost={producto.cost}

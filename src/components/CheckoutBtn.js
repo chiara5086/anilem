@@ -8,7 +8,7 @@ const CheckoutBtn = () => {
     return (
         <>  
         <Link to="/cart">
-         <button type="button" class="btn btn-dark">Finalizar compra</button>
+         <button type="button" className="btn btn-dark">Finalizar compra</button>
          </Link>
         </>
     )

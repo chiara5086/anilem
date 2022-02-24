@@ -6,7 +6,9 @@ const CartContextProvider = ({children}) => {
     const [cartList, setCartList] = useState([]);
 
     const addToCart = (item, cantidad) => {
-        setCartList([
+        const prodElegido = cartList.filter(prod => prod.id === item.id);
+        if (prodElegido.length===0){
+          setCartList([
             ...cartList,            
             {
             id: item.id,
@@ -14,10 +16,47 @@ const CartContextProvider = ({children}) => {
             image: item.image,
             price: item.cost,
             cantidad: cantidad,
-        }]);
+        }]);  
+        } else {
+            let cantCarrito;
+            prodElegido.forEach(p => cantCarrito = p.cantidad);
+            let index = cartList.findIndex(prod => prod.id === item.id);
+        
+            cartList.splice(index, 1);
+
+            let cantidadNueva = cantCarrito + cantidad;
+        
+            setCartList([
+                ...cartList,            
+                {
+                id: item.id,
+                name: item.name,
+                image: item.image,
+                price: item.cost,
+                cantidad: cantidadNueva,
+            }]);
+        }
+        }
+
+    const deleteProduct = (id) => {
+        
+        const prodElegido = cartList.filter(prod => prod.id === id);
+        console.log(cartList)
+        console.log(prodElegido)
+        if (prodElegido.length>0) {
+            
+            let index = cartList.findIndex(prod => prod.id === id);
+        
+            cartList.splice(index, 1);   
+        }  
     }
+
+    const removeList = () => {
+        setCartList([]);
+    }
+
     return(
-        <CartContext.Provider value={{cartList, addToCart}}>
+        <CartContext.Provider value={{cartList, addToCart, deleteProduct, removeList}}>
             {children}
         </CartContext.Provider>
     )

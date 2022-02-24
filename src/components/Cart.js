@@ -4,72 +4,82 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
 
+
+
 const Cart = () => {
-    const test = useContext(CartContext);
+
+    
+       const test = useContext(CartContext);
+
+       const deleteItem = () => {
+           test.deleteProduct();
+       }
+    
+    
 
     return (
-        <div className="card">
-    <div className="row">
-        <div className="col-md-8 cart">
-            <div className="title">
-                <div className="row">
-                    <div className="col">
-                        <h4><b>Carrito de compras</b></h4>
-                    </div> 
-                    <div className="col align-self-center text-right text-muted">{test.cartList[0].cantidad} items</div>
-                </div>
-            </div>
-                    {
-                        test.cartList.map(item => {
-                            return(
-                                <>
-                              <div className="row border-top border-bottom">
-                <div className="row main align-items-center">
-                    <div className="col-2"><img className="img-fluid" src={test.cartList[0].image}/></div>
-                    <div className="col">
-                        <div className="row text-muted">Shirt</div>
-                        <div className="row">{test.cartList[0].name}</div>
-                    </div>
-                    <div className="col"> <a href="#">-</a><a href="#" className="border">1</a><a href="#">+</a> </div>
-                    <div className="col">$ {test.cartList[0].price} <button type="button" className="btn-close"></button></div>
-                </div>
-            </div>
-            <div className="back-to-shop"><a href="#">← </a><span className="text-muted">Back to shop</span></div>
-        
-        <div className="col-md-4 summary">
-            <div>
-                <h5><b>Summary</b></h5>
-            </div>
-            <hr/>
-            <div className="row">
-                <div className="col" style={{paddingLeft:"0"}}>{test.cartList[0].cantidad}</div>
-                <div className="col text-right">$ {test.cartList[0].price}</div>
-            </div>
-            <form>
-                <p>SHIPPING</p> <select>
-                    <option className="text-muted">Standard-Delivery- $ 5.00</option>
-                </select>
-                <p>GIVE CODE</p> <input id="code" placeholder="Enter your code"/>
-            </form>
-            <div className="row" style={{borderTop: "1px solid rgba(0,0,0,.1)", padding: "2vh 0"}}>
-                <div className="col">TOTAL PRICE</div>
-                <div className="col text-right">{test.cartList[0].price}</div>
-            </div> 
-            </div>
-            <button className="btn">CHECKOUT</button>
-            
-            </>
-                            )
-                        }
+        <>      <div className="cart_title">Carrito de compras</div> 
+        <div className="cart_buttons"><button onClick={test.removeList} type="button" className="button cart_button_clear">Vaciar Carrito</button></div>
 
-                        )
-                    }
-                   
-            
-        </div>
-    </div>
-</div>
-    );
-}
+            {
+             test.cartList.length > 0
+            ? test.cartList.map(item => {
+                return(
+                    <div className="cart_section">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-lg-10 offset-lg-1">
+                                <div className="cart_container">
+                                    
+                                    <div className="cart_items">
+                                        <ul className="cart_list">
+                                            <li className="cart_item clearfix">
+                                                <div className="cart_item_image"><img src={item.image} alt=""/></div>
+                                                <div className="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                                    <div className="cart_item_name cart_info_col">
+                                                        <div className="cart_item_title">Nombre</div>
+                                                        <div className="cart_item_text">{item.name}</div>
+                                                    </div>
+                                                    <div className="cart_item_quantity cart_info_col">
+                                                        <div className="cart_item_title">Cantidad</div>
+                                                        <div className="cart_item_text">{item.cantidad}</div>
+                                                    </div>
+                                                    <div className="cart_item_price cart_info_col">
+                                                        <div className="cart_item_title">Precio</div>
+                                                        <div className="cart_item_text">{item.price}</div>
+                                                    </div>
+                                                    <div className="cart_item_total cart_info_col">
+                                                        <div className="cart_item_title">Total</div>
+                                                        <div className="cart_item_text">{item.price*item.cantidad}</div>
+                                                    </div>
+                                                    <div>
+                                                        <button onClick={deleteItem}><i className="bi bi-trash"></i></button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+
+
+            ): <p>No hay productos en el carrito</p>
+        }
+        <div className="order_total">
+                <div className="order_total_content text-md-right">
+                <div className="order_total_title">Order Total:</div>
+                                            <div className="order_total_amount">$</div>
+                                        </div>
+                                    </div>
+<div className="cart_buttons"> <button type="button" className="button cart_button_clear">Continue Shopping</button> <button type="button" className="button cart_button_checkout">Add to Cart</button> </div>
+        </> 
+          )}
 
 export default Cart;
