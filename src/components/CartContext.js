@@ -39,16 +39,8 @@ const CartContextProvider = ({children}) => {
         }
 
     const deleteProduct = (id) => {
-        
-        const prodElegido = cartList.filter(prod => prod.id === id);
-        console.log(cartList)
-        console.log(prodElegido)
-        if (prodElegido.length>0) {
-            
-            let index = cartList.findIndex(prod => prod.id === id);
-        
-            cartList.splice(index, 1);   
-        }  
+     let result = cartList.filter(item => item.id !== id);
+     setCartList(result);
     }
 
     const removeList = () => {

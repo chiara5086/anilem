@@ -9,17 +9,16 @@ import { CartContext } from "./CartContext";
 const Cart = () => {
 
     
-       const test = useContext(CartContext);
-
-       const deleteItem = () => {
-           test.deleteProduct();
-       }
-    
-    
+       const test = useContext(CartContext);  
 
     return (
         <>      <div className="cart_title">Carrito de compras</div> 
-        <div className="cart_buttons"><button onClick={test.removeList} type="button" className="button cart_button_clear">Vaciar Carrito</button></div>
+        { 
+        (test.cartList.length > 0)
+        ?<div className="cart_buttons"><button onClick={test.removeList} type="button" className="button cart_button_clear">Vaciar Carrito</button></div>
+        : <p>No hay productos en el carrito</p>
+        }
+        
 
             {
              test.cartList.length > 0
@@ -53,7 +52,7 @@ const Cart = () => {
                                                         <div className="cart_item_text">{item.price*item.cantidad}</div>
                                                     </div>
                                                     <div>
-                                                        <button onClick={deleteItem}><i className="bi bi-trash"></i></button>
+                                                        <button onClick={() => test.deleteProduct(item.id)}><i className="bi bi-trash"></i></button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -70,7 +69,7 @@ const Cart = () => {
 
 
 
-            ): <p>No hay productos en el carrito</p>
+            ): <p></p>
         }
         <div className="order_total">
                 <div className="order_total_content text-md-right">
