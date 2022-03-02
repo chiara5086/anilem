@@ -3,13 +3,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
+import { Link } from "react-router-dom";
 
 
 
 const Cart = () => {
 
-    
-       const test = useContext(CartContext);  
+    const test = useContext(CartContext);  
 
     return (
         <>      <div className="cart_title">Carrito de compras</div> 
@@ -49,7 +49,7 @@ const Cart = () => {
                                                     </div>
                                                     <div className="cart_item_total cart_info_col">
                                                         <div className="cart_item_title">Total</div>
-                                                        <div className="cart_item_text">{item.price*item.cantidad}</div>
+                                                        <div className="cart_item_text">{test.calcPerItem(item.id)}</div>
                                                     </div>
                                                     <div>
                                                         <button onClick={() => test.deleteProduct(item.id)}><i className="bi bi-trash"></i></button>
@@ -74,10 +74,10 @@ const Cart = () => {
         <div className="order_total">
                 <div className="order_total_content text-md-right">
                 <div className="order_total_title">Order Total:</div>
-                                            <div className="order_total_amount">$</div>
+                                            <div className="order_total_amount">$ {test.calcTotal()}</div>
                                         </div>
                                     </div>
-<div className="cart_buttons"> <button type="button" className="button cart_button_clear">Continue Shopping</button> <button type="button" className="button cart_button_checkout">Add to Cart</button> </div>
+<div className="cart_buttons"> <Link to="/" style={{textDecoration: 'none', color: 'white'}}><button type="button" className="button cart_button_clear">Continue Shopping</button></Link> </div>
         </> 
           )}
 

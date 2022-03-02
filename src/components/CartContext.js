@@ -47,8 +47,27 @@ const CartContextProvider = ({children}) => {
         setCartList([]);
     }
 
+    const calcItems = () => {
+        let cantItems = cartList.map(item => item.cantidad);
+        return cantItems.reduce(((previousValue, currentValue) => previousValue + currentValue), 0);
+    }
+
+    const calcPerItem = (id) => {
+        let index = cartList.map(item => item.id).indexOf(id);
+        return cartList[index].price*cartList[index].cantidad;
+    }
+    const calcOrderTotal = () => {
+        let orderTotal = cartList.map(item => calcPerItem(item.id));
+        return orderTotal.reduce((previousValue, currentValue) => previousValue + currentValue);
+    }
+
+    const calcTotal = () => {
+        if (cartList.length > 0) return calcOrderTotal();
+        return 0;
+    }
+
     return(
-        <CartContext.Provider value={{cartList, addToCart, deleteProduct, removeList}}>
+        <CartContext.Provider value={{cartList, addToCart, deleteProduct, removeList, calcItems, calcPerItem, calcTotal}}>
             {children}
         </CartContext.Provider>
     )
