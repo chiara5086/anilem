@@ -1,11 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import {customFetch} from "../utils/customFetch"
 import "bootstrap-icons/font/bootstrap-icons.css";
 import ItemList from './ItemList';
+import db from "../utils/firebaseConfig";
+import { collection, getDocs, query, where  } from "firebase/firestore";
 
-
-const {products} = require('../utils/products')
 
 const ItemListContainer = () => {
 
@@ -13,21 +12,39 @@ const ItemListContainer = () => {
 
     const {idCategory} = useParams();
 
-    console.log(idCategory)
 
     useEffect (() => {
+        
         if (idCategory === undefined) {
-            
-            customFetch(1000, products)
+            const firestoreFetch = async () => {
+         const querySnapshot = await getDocs(collection(db, "products"));
+         return querySnapshot.docs.map(document => ({
+           id: document.id,
+           ...document.data()
+         }));
+         
+        }
+        firestoreFetch()
             .then(result => setDatos(result))
-            .catch(err => console.log(err))
+            .catch(error => console.log(error));
         } else {
+            const firestoreFetch2 = async () => {
+                const q = query(collection(db, "products"), where("category", "==", parseInt(idCategory)));
+                const querySnapshot = await getDocs(q);
+                return querySnapshot.docs.map(document => ({
+                  id: document.id,
+                  ...document.data()
+                }));
+
+               }
             
-            customFetch(1000, products.filter(item => item.categoryId === parseInt(idCategory)))
-            .then(result => setDatos(result))
-            .catch(err => console.log(err)) 
+               firestoreFetch2()
+               .then(result => setDatos(result))
+               .catch(error => console.log(error));
+            
         }
         
+                     
     }, [idCategory]);
 
     return (

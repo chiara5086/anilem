@@ -17,7 +17,6 @@ const Item = (props) => {
         </div>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">Precio: {props.cost}</li>
-          <li className="list-group-item">Capcidad: {props.capacity}</li>
           <li className="list-group-item">Stock: {props.stock}</li>
         </ul>
         <div className="card-body">
@@ -28,16 +27,6 @@ const Item = (props) => {
     )
   } 
   
-  {/*<div className="card">
-        <img src={props.image} className="card-img-top" alt="..."/>
-        <div className="card-body">
-          <h5 className="card-title">{props.name}</h5>
-          <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-    </div>
-      )     
-    }*/}
    
 
 export default Item;

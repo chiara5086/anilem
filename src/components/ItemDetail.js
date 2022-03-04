@@ -35,7 +35,6 @@ const ItemDetail = (item) => {
         <div className="col-md-8">
           <div className="card-body">
           <h5 className="card-title">{item.name}</h5>
-          <p className="card-text">Descripción: {item.description}</p>
           <h5>${item.cost}</h5>
           <p className="card-text"><small className="text-muted">Unidades en stock: {item.stock}</small></p>
           </div>

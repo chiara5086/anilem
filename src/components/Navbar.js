@@ -18,13 +18,13 @@ const Navbar = () => {
               <Link to="/" style={{textDecoration: 'none', color: 'white'}}><p className="nav-link active" aria-current="page" href="#">Inicio</p></Link>
               </li>
                <li className="nav-item">
-                <Link to="/category/9" style={{textDecoration: 'none', color: 'white'}}><p className="nav-link" href="#">Sin alcohol</p></Link>
+                <Link to="/category/1" style={{textDecoration: 'none', color: 'white'}}><p className="nav-link" href="#">Cuadros</p></Link>
               </li>
               <li className="nav-item">
-              <Link to="/category/1" style={{textDecoration: 'none', color: 'white'}}><p className="nav-link" href="#">Vinos</p></Link>
+              <Link to="/category/2" style={{textDecoration: 'none', color: 'white'}}><p className="nav-link" href="#">Tazas</p></Link>
               </li>
               <li className="nav-item">
-              <Link to="/category/5" style={{textDecoration: 'none', color: 'white'}}><p className="nav-link" href="#">Licores</p></Link>
+              <Link to="/category/3" style={{textDecoration: 'none', color: 'white'}}><p className="nav-link" href="#">Velas</p></Link>
               </li>           
             </ul>
             <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
