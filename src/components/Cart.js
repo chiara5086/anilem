@@ -4,15 +4,55 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
 import { Link } from "react-router-dom";
+import {collection, serverTimestamp, setDoc, doc, updateDoc, increment} from "firebase/firestore";
+import db from "../utils/firebaseConfig"
 
 
 
 const Cart = () => {
 
-    const test = useContext(CartContext);  
+    const test = useContext(CartContext);
+
+    const createOrder = () => {
+        let order = {
+            buyer:{
+                email: "juanperez@mail.com",
+                name: "Juan Perez",
+                phone: "1133457859"
+            },
+            date: serverTimestamp(),
+            items: test.cartList.map((it) => {return {id: it.id, price: it.price, title: it.name, cantidad: it.cantidad}}),
+            total: test.calcTotal()
+        }
+        console.log(order);
+
+        const createOrderInFirestore = async () => {
+            const newOrderRef = doc(collection(db, "orders"));
+            await setDoc (newOrderRef, order);
+            return newOrderRef;
+         }
+     
+         createOrderInFirestore ()
+         .then((result) => {
+             alert("Tu orden ha sido creada: " + result.id) ; 
+             
+            test.cartList.map(async (item) => {
+                 const itemRef = doc(db, "products", item.id)
+                 await updateDoc(itemRef, {
+                     stock: increment(-item.cantidad)
+                 });
+             });
+             test.removeList();
+            })
+         .catch(error => console.log(error));
+
+         
+    };
+
 
     return (
-        <>      <div className="cart_title">Carrito de compras</div> 
+        <> 
+        <div className="cart_title">Carrito de compras</div> 
         { 
         (test.cartList.length > 0)
         ?<div className="cart_buttons"><button onClick={test.removeList} type="button" className="button cart_button_clear">Vaciar Carrito</button></div>
@@ -77,7 +117,8 @@ const Cart = () => {
                                             <div className="order_total_amount">$ {test.calcTotal()}</div>
                                         </div>
                                     </div>
-<div className="cart_buttons"> <Link to="/" style={{textDecoration: 'none', color: 'white'}}><button type="button" className="button cart_button_clear">Continue Shopping</button></Link> </div>
+<div className="cart_buttons"> <Link to="/" style={{textDecoration: 'none', color: 'white'}}><button type="button" className="button cart_button_clear">Continuar comprando</button></Link> <button onClick={createOrder} type="button" className="button cart_button_clear">Finalizar compra</button></div>
+              
         </> 
           )}
 
