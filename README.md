@@ -2,6 +2,8 @@
 
 _E-commerce de cuadros, tazas y velas_
 
+![Image text](https://github.com/chiara5086/anilem/blob/main/src/img/img-readme.png)
+
 ## Comenzando 🚀
 
 _Para comenzar y acceder al proyecto se debe realizar un git clone del siguiente repositorio:https://github.com/chiara5086/anilem.git_
