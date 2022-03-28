@@ -45,10 +45,10 @@ const Onclickevent = () => {
     return (
     <>
     <div className="row">
-        <div className="col-sm-3">
-            <div className="input-group">
+        <div className={props.forma}>
+            <div className="input-group" >
                 <button onClick={decrease} type="button" className="btn btn-outline-dark" disabled={sinStock}>-</button>
-                <input type="text" name="quant[1]" className="form-control input-number" value={cantidad} min="0" max="10"/>
+                <input type="text" name="quant[1]" className="form-control input-number" onChange={()=>{}} value ={cantidad}/>
                 <button onClick={increment} type="button" className="btn btn-outline-dark" disabled={sinStock}>+</button>
                 <button onClick={Onclickevent} type="button" className="btn btn-outline-dark" disabled={estadoBtn}>Agregar al carrito</button>
             </div>

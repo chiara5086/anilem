@@ -4,7 +4,6 @@ import ItemDetail from './ItemDetail';
 import db from "../utils/firebaseConfig";
 import { collection, getDocs, query, where  } from "firebase/firestore";
 
-const {products} = require('../utils/products')
 
 const ItemDetailContainer = () => {
 
@@ -34,9 +33,10 @@ const ItemDetailContainer = () => {
         dato.length > 0 ? (
             dato.map(item => {
             return (
-                <>
-                    <ItemDetail item={dato}
-                    key={item.id+ "header"}
+                
+                <div key={item.key+'header'}>
+                    <ItemDetail 
+                    item={dato}
                     id={item.id}
                     name={item.name}
                     cost={item.cost}
@@ -44,7 +44,8 @@ const ItemDetailContainer = () => {
                     description={item.description}
                     capacity={item.capacity}
                     stock={item.stock}/>
-                </>
+                </div>
+                
                     )
                 })
         ):       

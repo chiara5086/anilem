@@ -22,7 +22,7 @@ const ItemDetail = (item) => {
     }
 
     const mensaje = (cantidad) => {
-      alert(cantidad>1 ? "Ha seleccionado "+cantidad+" items.": "Ha seleccionado "+cantidad+" item.");   
+      alert(cantidad>1 ? "Ha agregadi al carrito "+cantidad+" items.": "Ha agregado al carrito "+cantidad+" item.");   
   }
 
     return (
@@ -44,7 +44,7 @@ const ItemDetail = (item) => {
 
     {
       itemCount === 0
-      ? <ItemCount stock={item.stock} initial={itemCount} onAdd={onAdd}/>
+      ? <ItemCount forma={"col-sm-3"} stock={item.stock} initial={itemCount} onAdd={onAdd}/>
       : <CheckoutBtn/>
     }
 

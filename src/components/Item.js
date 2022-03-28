@@ -3,12 +3,28 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import 'bootstrap/dist/css/bootstrap.css';
 import {Link} from "react-router-dom";
+import ItemCount from "./ItemCount";
+import {useState, useContext} from "react";
+import { CartContext } from './CartContext';
 
-// your link creation
 
 
 const Item = (props) => {
+
+  const [itemCount, setItemCount] = useState(0);
+    const test = useContext(CartContext)
   
+  const onAdd = (cantidad) => {
+    mensaje(cantidad);
+    setItemCount(cantidad);
+    test.addToCart(props, cantidad);
+    
+  }
+
+  const mensaje = (cantidad) => {
+    alert(cantidad>1 ? "Ha agregado al carrito "+cantidad+" items.": "Ha agregado al carrito "+cantidad+" item.");   
+}
+
     return (
         <div className="card border-secondary" style={{width: "18rem"}}>
         <img src={props.image} className="card-img-top" alt="..."/>
@@ -21,7 +37,7 @@ const Item = (props) => {
         </ul>
         <div className="card-body">
           <Link to={`/item/${props.id}`}><p href="#" className="card-link">Ver detalle</p></Link>
-          <a href="#" className="card-link">Agregar</a>
+          <div><ItemCount forma={""} stock={props.stock} initial={itemCount} onAdd={onAdd}/></div>
         </div>
       </div>
     )

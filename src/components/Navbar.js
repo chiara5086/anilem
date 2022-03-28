@@ -29,12 +29,12 @@ const Navbar = () => {
             </ul>
             <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
             <li className="right-b nav-item">
-                <a className="nav-link" href="#">Registrarse</a>
+                <div className="nav-link" href="#">Registrarse</div>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Iniciar cesión</a>
+                <div className="nav-link" href="#">Iniciar sesión</div>
               </li> 
-            <a className="nav-link"><CartWidget/></a>
+            <div className="nav-link"><CartWidget/></div>
             </ul>
             
           </div>

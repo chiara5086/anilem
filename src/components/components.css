@@ -188,4 +188,8 @@ ul {
     vertical-align: top
 }
 
+.input-group {
+    justify-content: center;
+}
+
 /*Fin de estilos carrito*/

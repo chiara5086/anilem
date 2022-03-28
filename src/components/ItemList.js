@@ -12,9 +12,8 @@ const ItemList = (props) => {
             props.productos.length > 0
             ? props.productos.map(producto => {
                 return(
-                <div className="col-sm-3">
+                <div className="col-sm-3" key={producto.id + "header"}>
                 <Item
-                    key={producto.id + "header"}
                     id={producto.id}
                     name={producto.name}
                     cost={producto.cost}
