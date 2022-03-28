@@ -36,7 +36,7 @@ const Item = (props) => {
           <li className="list-group-item">Stock: {props.stock}</li>
         </ul>
         <div className="card-body">
-          <Link to={`/item/${props.id}`}><p href="#" className="card-link">Ver detalle</p></Link>
+          <Link to={`/item/${props.id}`}><p href="#" className="btn btn-outline-dark">Ver detalle</p></Link>
           <div><ItemCount forma={""} stock={props.stock} initial={itemCount} onAdd={onAdd}/></div>
         </div>
       </div>
