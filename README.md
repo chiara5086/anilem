@@ -2,7 +2,7 @@
 
 _E-commerce de cuadros, tazas y velas_
 
-![Image text](https://github.com/chiara5086/anilem/blob/main/src/img/img-readme.png)
+![Image text](https://github.com/chiara5086/anilem/blob/main/src/img/readme-img.png)
 
 ## Comenzando 🚀
 
